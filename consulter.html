@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Annonces</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px; /* Ajoute un espacement entre les cadres */
+            margin: 20px;
+        }
+
+        .container {
+            width: 45%; /* Réduit la largeur des conteneurs */
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 20px;
+            text-align: left;
+        }
+
+        .announcement-details {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .announcement-photo {
+            max-width: 120px;
+            margin-right: 10px;
+        }
+
+        .announcement-photo img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .announcement-info {
+            flex-grow: 1;
+        }
+
+        .announcement-info h2 {
+            margin: 0;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .announcement-info p {
+            margin: 6px 0;
+            color: #555;
+            font-size: 12px;
+        }
+
+        .destination {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .announcement-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .announcement-actions form button {
+            padding: 6px 12px;
+            font-size: 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .announcement-actions form button:hover {
+            opacity: 0.9;
+        }
+
+        .announcement-actions form button[type="submit"] {
+            background-color: green;
+            color: white;
+        }
+
+        .announcement-actions form button[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+
+        .announcement-actions form button[type="submit"][style="background-color: red; color: white;"] {
+            background-color: red;
+        }
+
+        .announcement-actions form button[type="submit"][style="background-color: red; color: white;"]:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- Première annonce -->
+        <div class="container">
+            <h1>Mes Annonces</h1>
+            <div class="announcement-details">
+                <div class="announcement-photo">
+                    <!-- Image de la première annonce -->
+                    <img src="photo.jpg" alt="Photo de la première annonce">
+                </div>
+                <div class="announcement-info">
+                    <h2 id="announcement-title-1">Nom de l'Annonce 1</h2>
+                    <p><strong>Catégorie:</strong> <span id="announcement-category-1">Presses</span></p>
+                    <p><strong>Description:</strong> <span id="announcement-description-1">haute capacité et haute performance</span></p>
+                    <p><strong>Prix:</strong> <span id="announcement-price-1">60 Dt/h</span></p>
+                    <div class="destination">
+                        <strong>Destination:</strong> <span id="announcement-destination-1">Sousse, Tunisie</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="announcement-actions">
+                <form action="/modifier-annonce" method="POST" style="display:inline;">
+                    <input type="hidden" name="announcement_id" value="1">
+                    <button type="submit">Modifier</button>
+                </form>
+                <form action="/supprimer-annonce" method="POST" style="display:inline;" onsubmit="return confirmDeletion();">
+                    <input type="hidden" name="announcement_id" value="1">
+                    <button type="submit" style="background-color: red; color: white;">Supprimer</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Deuxième annonce -->
+        <div class="container">
+            <h1>Mes Annonces</h1>
+            <div class="announcement-details">
+                <div class="announcement-photo">
+                    <!-- Image de la deuxième annonce -->
+                    <img src="photo-annonce2.jpg" alt="Photo de la deuxième annonce">
+                </div>
+                <div class="announcement-info">
+                    <h2 id="announcement-title-2">Faucheuses</h2>
+                    <p><strong>Catégorie:</strong> <span id="announcement-category-2">faucheuses</span></p>
+                    <p> <span id="announcement-description-2">Avec un conditionneur à fléaux ou des rouleaux de conditionnement</span></p>
+                    <p><strong>Prix:</strong> <span id="announcement-price-2">120 Dt/h</span></p>
+                    <div class="destination">
+                        <strong>Destination:</strong> <span id="announcement-destination-2">Tunis, Tunisie</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="announcement-actions">
+                <form action="/modifier" method="POST" style="display:inline;">
+                    <input type="hidden" name="announcement_id" value="2">
+                    <button type="submit">Modifier</button>
+                </form>
+                <form action="/supprimer" method="POST" style="display:inline;" onsubmit="return confirmDeletion();">
+                    <input type="hidden" name="announcement_id" value="2">
+                    <button type="submit" style="background-color: red; color: white;">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirmDeletion() {
+            return confirm("Êtes-vous sûr de vouloir supprimer cette annonce ?");
+        }
+    </script>
+
+</body>
+</html>
